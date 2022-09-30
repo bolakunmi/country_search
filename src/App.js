@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import "./index.css";
 import HEADER from "./components/Header.js";
 import SEARCH from "./components/Search";
-import COUNTRIES from "./components/Countries";
+// import COUNTRIES from "./components/Countries";
 
 export const LIGHT_DARK=React.createContext()
 

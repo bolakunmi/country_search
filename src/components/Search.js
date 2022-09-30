@@ -3,7 +3,7 @@ import COUNTRIES from "./Countries.js";
 import { LIGHT_DARK } from "../App";
 
 const SEARCH = () => {
-  const { dark, setDark } = useContext(LIGHT_DARK);
+  const { dark} = useContext(LIGHT_DARK);
   const [my_search, setMy_search] = useState("");
 
   const my_search_ref = useRef(null);

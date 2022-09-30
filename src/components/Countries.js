@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 
 const COUNTRIES = () => {
-  const [list, setList] = useState([]);
-  const [fetched, setFetched] = useState(false);
+    // undo all commented
+//   const [list, setList] = useState([]);
+  const [fetched] = useState(false);
 
   const LOADED = () => {
     return <h2>loaded.</h2>
