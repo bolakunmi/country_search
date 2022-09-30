@@ -1,24 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useState} from "react";
+import "./index.css";
+import HEADER from "./components/Header.js";
+import SEARCH from "./components/Search";
+import COUNTRIES from "./components/Countries";
+
+export const LIGHT_DARK=React.createContext()
 
 function App() {
+  const [dark, setDark] = useState(true);
+
+
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.wedfd
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <React.Fragment>
+      <LIGHT_DARK.Provider value={{ dark, setDark }}>
+        <HEADER />
+        <SEARCH />
+      </LIGHT_DARK.Provider>
+    </React.Fragment>
   );
 }
 

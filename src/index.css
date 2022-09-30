@@ -1,13 +1,125 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
+    font-family: 'Poppins', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+  padding: 0;
+  cursor: default;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+/* ============================GENERAL=====================================*/
+p {
+  font-size: 14px;
+}
+
+h2 {
+  font-size: 20px;
+}
+h4 {
+  font-size: 16px;
+}
+
+button,
+input,
+select,
+textarea {
+  cursor: pointer;
+}
+
+.body_dark {
+  background: rgb(32, 45, 54);
+  color: rgb(223, 227, 229);
+}
+
+.body_light {
+  background: rgb(240, 240, 240);
+  color: rgb(50, 51, 53);
+}
+
+/* ============================HEADER=====================================*/
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.251);
+  padding: 10px 40px;
+}
+
+.header img {
+  width: 14px;
+  height: fit-content;
+}
+
+.header button {
+  display: flex;
+  align-items: center;
+  column-gap: 5px;
+  border: none;
+  background: none;
+  box-shadow: none;
+  padding: 0;
+}
+.header h2 {
+  margin: 0;
+}
+
+.night_header {
+  background: rgb(43, 55, 67);
+  color: rgb(254, 255, 255);
+}
+
+.light_header {
+  background: rgb(255, 255, 255);
+  color: rgb(20, 21, 23);
+}
+
+/* ============================SEARCH=====================================*/
+.search_container {
+  display: flex;
+  padding: 40px 40px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.search_container input, .search_container select {
+  padding:10px;
+  border: none
+}
+
+.search_container input:focus , .search_container select:focus {
+  outline:none
+}
+
+.search_item{
+    box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.251);
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-radius:3px;
+}
+
+.search_item img{
+  width: 20px;
+}
+
+.search_container select{
+  height: 54px;
+  width: 150px;
+}
+
+.search_container input{
+    font-size: 14px;
+    width: 300px;
+}
+
+
+/* ============================COUNTRIES=====================================*/
