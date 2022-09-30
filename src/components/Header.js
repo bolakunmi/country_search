@@ -7,8 +7,8 @@ const HEADER = () => {
   useEffect(() => {
     const html = document.querySelector("html");
     console.log(html);
-    { dark ? html.classList.add("body_dark") : html.classList.add("body_light");
-      dark ? html.classList.remove("body_light") : html.classList.remove("body_dark");}
+     dark ? html.classList.add("body_dark") : html.classList.add("body_light");
+      dark ? html.classList.remove("body_light") : html.classList.remove("body_dark");
   }, [dark]);
 
 
