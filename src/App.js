@@ -7,47 +7,27 @@ import COUNTRY from "./components/Country";
 // import COUNTRIES from "./components/Countries";
 
 export const LIGHT_DARK = React.createContext();
-export const SELECT_CONTINENT = React.createContext();
 export const COUNTRY_LIST = React.createContext();
 
-let CountryListProvider = ({ children }) => {
+const CountryListProvider = ({ children }) => {
   const [list, setList] = useState([]);
   const [isLoading, setIsLoading] = useState(true)
   const [isError, setIsError] = useState(false)
+  const [selectedContinent, setSelectedContinent] = useState('')
+  const [search, setSearch] = useState('')
 
   const loadCountries = async () => {
-    // if (select_continent === 'all') {
-    //   fetchCountry()
-    // } else {
-    // profile.filter((countries) => {
-    //   return countries.region === select_continent
-    // })
-    
     try {
       const response = await fetch('https://restcountries.com/v2/all')
       const data = await response.json()
       if (response.status === 200) {
         setList(data)
         setIsLoading(false)
-
-        // it should filter this my search through the selected continent list
-        // if (my_search.length > 0) {
-        //   setList(
-        //     list.filter((countries) => {
-        //       return countries.name
-        //         .toLowerCase()
-        //         .includes(my_search.toLowerCase())
-        //     })
-        //   )
-        // }
       } else {
         setIsError(true)
-        // setFetch_error(profile.message)
       }
     } catch (error) {
-      // console.log(error.message)
       setIsError(error.message)
-      // console.log(fetch_error)
     }
   }
   
@@ -57,7 +37,19 @@ let CountryListProvider = ({ children }) => {
   
 
   return (
-    <COUNTRY_LIST.Provider value={{ list, isLoading, isError }}>{children}</COUNTRY_LIST.Provider>
+    <COUNTRY_LIST.Provider
+      value={{
+        list,
+        isLoading,
+        isError,
+        search,
+        selectedContinent,
+        setSearch,
+        setSelectedContinent,
+      }}
+    >
+      {children}
+    </COUNTRY_LIST.Provider>
   )
 }
 

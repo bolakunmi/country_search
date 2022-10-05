@@ -5,14 +5,21 @@ import { COUNTRY_LIST } from "../App";
 
 const LOADED = () => {
   const { dark } = useContext(LIGHT_DARK)
-  const { list } = useContext(COUNTRY_LIST)
+  const { list, search, selectedContinent } = useContext(COUNTRY_LIST)
 
   /** If search is set or continent is set, you filter by those values if they exist and if they are not found, display something to tell them */
 
-  const filtered_countries = list.filter(country => country.continent === 'selected_continent or something or country.name === search-value')
+  let filtered_countries = list
+  if (search) {
+    filtered_countries = filtered_countries.filter(country => country.name === search)
+  } 
+  if (selectedContinent && selectedContinent !== 'all') {
+    filtered_countries = filtered_countries.filter(
+      (country) => country.region === selectedContinent
+    )
+  }
 
-
-  return list.map((country_info) => {
+  return filtered_countries.map((country_info) => {
     const { name, population, region, capital, flags, numericCode } =
       country_info
 
@@ -34,7 +41,7 @@ const LOADED = () => {
   })
 }
 
-const COUNTRIES = ({ select_continent, my_search }) => {
+const COUNTRIES = () => {
   const { isLoading, isError } = useContext(COUNTRY_LIST);
 
   if (isLoading) {
