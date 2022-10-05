@@ -1,5 +1,6 @@
 import React, { useEffect, useContext } from "react";
 import { LIGHT_DARK } from "../App";
+import { Link } from "react-router-dom";
 
 const HEADER = () => {
   const { dark, setDark } = useContext(LIGHT_DARK);
@@ -15,7 +16,9 @@ const HEADER = () => {
   return (
     <React.Fragment>
       <div className={dark ? "night_header header" : "light_header header"}>
-        <h2>Where in the world?</h2>
+        <Link to={'/'} className={dark ? "night_header " : "light_header "}> <h2>Where in the world?</h2>
+        </Link>
+       
         <button
           className={dark ? "night_header header" : "light_header header"}
           onClick={() => {
