@@ -1,22 +1,19 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { LIGHT_DARK } from "../App";
-// import { COUNTRY_LIST } from "../App";
+import { COUNTRY_LIST } from "../App";
 // import { SELECT_CONTINENT } from "../App";
 
 // import TrackVisibility from "react-on-screen";
 
 const COUNTRIES = ({ select_continent, my_search }) => {
   const { dark } = useContext(LIGHT_DARK);
-  //   const { list, setList } = useContext(COUNTRY_LIST);
-  const [list, setList] = useState([]);
-  const [fetched, setFetched] = useState(false);
+  const { list, setList } = useContext(COUNTRY_LIST);
   const [fetch_error, setFetch_error] = useState("");
   // const {select_continent} = useContext(SELECT_CONTINENT);
 
-  //     const [isLoading, setIsLoading] = useState(true);
-  //   const [isError, setIsError] = useState(false);
-  //   const [user, setUser] = useState("DEFAULT_user");
+  const [isLoading, setIsLoading] = useState(true);
+  const [isError, setIsError] = useState(false);
 
   const load_countries = async () => {
     if (select_continent === "all") {
@@ -35,19 +32,14 @@ const COUNTRIES = ({ select_continent, my_search }) => {
               })
             );
           }
-          return setFetched(true);
+          return setIsLoading(false);
         } else {
-          setFetched(false);
+          setIsError(true);
           setFetch_error(profile.message);
         }
-        //   setFetched(true);
-        console.log(response.status + "real");
-        console.log("loaded page");
-        console.log(profile);
-        console.log(list);
+        setIsLoading(false);
       } catch (error) {
-        console.log("error page");
-        console.log(error.message);
+        console.log(error);
         setFetch_error(error.message);
         console.log(fetch_error);
       }
@@ -72,15 +64,12 @@ const COUNTRIES = ({ select_continent, my_search }) => {
               })
             );
           }
-
-          return setFetched(true);
+          setIsLoading(false);
         } else {
-          setFetched(false);
+          setIsError(true);
           setFetch_error(profile.message);
         }
-        //   setFetched(true);
       } catch (error) {
-        console.log("error page");
         console.log(error.message);
         setFetch_error(error.message);
         console.log(fetch_error);
@@ -92,22 +81,14 @@ const COUNTRIES = ({ select_continent, my_search }) => {
     load_countries();
   });
 
-  //   function load_countries() {
-  //     fetch("https://restcountries.com/v2/all")
-  //       .then((response) => {
-  //         response.json();
-  //       })
-  //       .then((user) => setList(user))
-  //       .catch((err) => console.log(err));
-  //   }
-
   const LOADED = () => {
     return list.map((country_info) => {
-      const { name, population, region, capital, flags, numericCode } = country_info;
+      const { name, population, region, capital, flags, numericCode } =
+        country_info;
 
       return (
         <Link
-        to={`/country/${numericCode}`}
+          to={`/country/${numericCode}`}
           key={numericCode}
           className={dark ? " night_header country" : " light_header country"}
         >
@@ -123,34 +104,28 @@ const COUNTRIES = ({ select_continent, my_search }) => {
     });
   };
 
-  //   if (isLoading) {
-  //     return (
-  //       <div>
-  //         <h1>Loading...</h1>
-  //       </div>
-  //     );
-  //   }
-  //   if (isError) {
-  //     return (
-  //       <div>
-  //         <h1>{isError}</h1>
-  //       </div>
-  //     );
-  //   } else {
-  //     // setIsLoading(false);
+  if (isLoading) {
+    return (
+      <div>
+        <h1>Loading...</h1>
+      </div>
+    );
+  }
+  if (isError) {
+    return (
+      <div>
+        <h2>Error : {fetch_error}</h2>
+      </div>
+    );
+  } else {
+    // setIsLoading(false);
 
-  //     return (
-  //       <div>
-  //         <h1>{user}</h1>
-  //       </div>
-  //     );
-  //   }
-
-  return (
-    <React.Fragment>
-      {fetched ? <LOADED /> : <h2>Error : {fetch_error}</h2>}
-    </React.Fragment>
-  );
+    return (
+      <React.Fragment>
+        <LOADED />
+      </React.Fragment>
+    );
+  }
 };
 
 export default COUNTRIES;

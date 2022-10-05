@@ -10,10 +10,7 @@ const GENERAL = () => {
   const [search_empty, setSearch_empty] = useState(true);
   // const {select_continent, setSelect_continent} = useContext(SELECT_CONTINENT);
 
-    const [select_continent, setSelect_continent] = useState("all");
-
-
-
+  const [select_continent, setSelect_continent] = useState("all");
 
   useEffect(() => {
     if (my_search.trim() === "") {
@@ -86,8 +83,6 @@ const GENERAL = () => {
           </select>
         </div>
       </div>
-      <div>this is what you are typing in the search engine: {my_search} </div>
-      <div>select: {select_continent}</div>
 
       {/* use an if condition for this */}
       <div className="country_display_style">

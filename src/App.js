@@ -12,16 +12,17 @@ export const COUNTRY_LIST = React.createContext();
 
 function App() {
   const [dark, setDark] = useState(true);
-
+  const [list, setList] = useState([]);
   return (
     <React.Fragment>
       <LIGHT_DARK.Provider value={{ dark, setDark }}>
-        <HEADER />
-        <Routes>
-          <Route path='/' exact element={<GENERAL />}/>
-          <Route path='/country/:numericCode' exact element={<COUNTRY />}/>
-          
-        </Routes>
+        <COUNTRY_LIST.Provider value={{list,setList}}>
+          <HEADER />
+          <Routes>
+            <Route path="/" exact element={<GENERAL />} />
+            <Route path="/country/:numericCode" exact element={<COUNTRY />} />
+          </Routes>
+        </COUNTRY_LIST.Provider>
       </LIGHT_DARK.Provider>
     </React.Fragment>
   );
