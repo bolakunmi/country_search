@@ -1,17 +1,15 @@
-import React, { useContext, useRef, useEffect, useState } from "react";
+import React, { useContext, useRef, useEffect } from "react";
 import COUNTRIES from "./Countries.js";
-import { LIGHT_DARK } from "../App";
+import { LIGHT_DARK, COUNTRY_LIST } from "../App";
 
 const SEARCH = () => {
-  const { dark} = useContext(LIGHT_DARK);
-  const [my_search, setMy_search] = useState("");
+  const { dark } = useContext(LIGHT_DARK);
+  const {search, selectedContinent, setSearch, setSelectedContinent} = useContext(COUNTRY_LIST)
 
   const my_search_ref = useRef(null);
 
-  useEffect(() => {}, []);
-
   function handleChange(e) {
-    setMy_search(e.target.value);
+    setSearch(e.target.value);
     console.log(e.target.value);
     console.log(e.target.value.length);
     // if it is zero, project the whole thing, else search for what you want
@@ -50,6 +48,7 @@ const SEARCH = () => {
             className={
               dark ? "night_header search_item" : "light_header search_item"
             }
+            onChange={(e) => {setSelectedContinent(e.target.value); console.log(e.target.value)}}
           >
             <option value={"all"}>Filter by Region</option>
             <option value={"Africa"}>Africa</option>
@@ -60,7 +59,7 @@ const SEARCH = () => {
           </select>
         </div>
       </div>
-      <div>this is what you are typing in the search engine: {my_search} </div>
+      <div>this is what you are typing in the search engine: {search} </div>
 
       {/* use an if condition for this */}
       <COUNTRIES />
