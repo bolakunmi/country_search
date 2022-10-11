@@ -1,14 +1,16 @@
-import React, { useContext} from "react";
+import React, { useContext } from "react";
 import COUNTRIES from "./Countries.js";
 import { LIGHT_DARK, COUNTRY_LIST } from "../App";
 
-
 const GENERAL = () => {
   const { dark } = useContext(LIGHT_DARK);
-  const { search, setSearch, setSelectedContinent } =
-    useContext(COUNTRY_LIST)
+  const { search, setSearch, setSelectedContinent } = useContext(COUNTRY_LIST);
 
-
+  function order(e) {
+    if (e.target.value.match(/^[a-zA-Z ]*$/)) {
+      setSearch(e.target.value);
+    }
+  }
 
   return (
     <div className="main-body">
@@ -31,7 +33,8 @@ const GENERAL = () => {
             placeholder="search for any country..."
             className={dark ? "night_header " : "light_header"}
             onChange={(e) => {
-               setSearch(e.target.value);
+              order(e);
+              //  setSearch(e.target.value);
             }}
             name="my_search"
             value={search}
